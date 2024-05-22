@@ -237,6 +237,8 @@ class Agent:
 
                     else:
                         print("NO function found...")
+                        print(fn_name)
+                        print(fn_args)
                         exit()
 
                 response = self.client.chat.completions.create(

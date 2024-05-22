@@ -19,17 +19,12 @@ This project consists of a set of Python scripts that work together to create an
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
-   cd <repository-directory>
-   ```
-
-2. Install the required Python packages:
-   ```sh
-   pip install -r requirements.txt
+   git clone https://github.com/PrAsAnNaRePo/SWE.git
+   cd https://github.com/PrAsAnNaRePo/SWE.git
    ```
 
 3. Set up environment variables:
-   - Create a `.env` file in the root directory and add the necessary environment variables (e.g., `FIRECRAWL_API_KEY`).
+   - Create a `.env` file in the root directory and add the necessary environment variables (`FIRECRAWL_API_KEY`, `OPENAI_API_KEY`).
 
 ### Running the Project
 To start the agent, execute the following command:
@@ -40,6 +35,3 @@ This will open a browser and start the interaction loop with the agent.
 
 ## Contributing
 Feel free to submit issues or pull requests for improvements and bug fixes. All contributions are welcome!
-
-## License
-This project is licensed under the MIT License.
