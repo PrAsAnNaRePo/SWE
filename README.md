@@ -23,8 +23,10 @@ This project consists of a set of Python scripts that work together to create an
    cd https://github.com/PrAsAnNaRePo/SWE.git
    ```
 
-3. Set up environment variables:
+2. Set up environment variables:
    - Create a `.env` file in the root directory and add the necessary environment variables (`FIRECRAWL_API_KEY`, `OPENAI_API_KEY`).
+
+3. Install all the packages needed.
 
 ### Running the Project
 To start the agent, execute the following command:

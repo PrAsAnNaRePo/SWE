@@ -1,6 +1,5 @@
 __pycache__/
 coffee-cube-next-template-main/
-mentor&mentee/
+WORKDIR/
 
 .env
-fn.json

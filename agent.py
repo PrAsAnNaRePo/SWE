@@ -7,11 +7,11 @@ import questionary
 from tools import dev_tools, terminal, write_in_file, google_search
 from utils import *
 
-
 class Agent:
     def __init__(
             self,
             sys_prompt: str,
+            model:str = 'gpt-4o',
             browser_driver = None,
             verbose: bool = False
     ) -> None:
@@ -19,6 +19,7 @@ class Agent:
         self.client = OpenAI()
         self.browser_driver = browser_driver
         self.verbose = verbose
+        self.model = model
         self.messages = [
             {
                 "role": 'system',
@@ -61,6 +62,7 @@ class Agent:
                     ]
                 }
             )
+
         else:
             self.messages.append(
                 {
@@ -71,7 +73,7 @@ class Agent:
 
         response = self.client.chat.completions.create(
             messages=self.messages,
-            model="gpt-4o",
+            model=self.model,
             tools=dev_tools
         )
         self.messages.append(response.choices[0].message)
@@ -195,7 +197,7 @@ class Agent:
 
                     elif fn_name == 'read_logs':
                         internal_monologue("Reading logs")
-                        tool_inp = self.browser_driver.get_log('browser')
+                        tool_inp = str(self.browser_driver.get_log('browser'))
                         if len(tool_inp) == 0:
                             tool_inp = "No logs found."
                         self.messages.append(
@@ -206,7 +208,7 @@ class Agent:
                                 "content": tool_inp,
                             }
                         )
-                    
+
                     elif fn_name == 'take_screenshot':
                         internal_monologue("taking screenshot")
                         self.messages.append(
@@ -242,7 +244,7 @@ class Agent:
                         exit()
 
                 response = self.client.chat.completions.create(
-                    model="gpt-4o",
+                    model=self.model,
                     messages=self.messages,
                     tools=dev_tools,
                 )
@@ -282,7 +284,7 @@ class Agent:
 
                 response = self.client.chat.completions.create(
                     messages=self.messages,
-                    model="gpt-4o",
+                    model=self.model,
                     tools=dev_tools
                 )
                 self.messages.append(response.choices[0].message)

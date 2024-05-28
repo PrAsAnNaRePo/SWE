@@ -158,14 +158,15 @@ def google_search(query):
 
     confined_result = ''
     for result in search_result:
-        confined_result += search_llm_client.chat.completions.create(
+        response = search_llm_client.chat.completions.create(
                 messages=[
                     {
                         "role": "user",
-                        "content": f"Here is the raw scrapped contents, try to remove only the unwanted contents in them and make it relevent for query: {query}\n\n{result['markdown']}"
+                        "content": f"Here is the raw scrapped contents, try to remove only the unwanted contents in them and make it relevent for query: {query}\n\n{result['markdown'][:14000] if len(result['markdown']) > 14000 else result['markdown']}"
                     }
                 ],
                 model="gpt-3.5-turbo",
-            ).choices[0].message.content + "\n\n\n"
+            )
+        confined_result += response.choices[0].message.content + "\n\n\n"
 
     return confined_result
